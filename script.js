@@ -1,166 +1,253 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* =========================================================
+   LOVE BIRTHDAY WEBSITE
+   FULL INDONESIA
+========================================================= */
 
-  "use strict";
-
-
-  /* =========================
-     ELEMENTS
-  ========================== */
-
-  const opening = document.getElementById("opening");
-  const startButton = document.getElementById("startButton");
-
-  const navbar = document.getElementById("navbar");
-  const menuButton = document.getElementById("menuButton");
-  const mobileMenu = document.getElementById("mobileMenu");
-
-  const musicButton = document.getElementById("musicButton");
-  const musicText = document.getElementById("musicText");
-  const bgMusic = document.getElementById("bgMusic");
-
-  const journeyFill = document.getElementById("journeyFill");
-  const journeyPercent = document.getElementById("journeyPercent");
-
-  const openLetter = document.getElementById("openLetter");
-  const envelopeWrap = document.getElementById("envelopeWrap");
-  const envelope = document.querySelector(".envelope");
-
-  const blowButton = document.getElementById("blowButton");
-  const cake = document.querySelector(".cake");
-  const cakeSmoke = document.getElementById("cakeSmoke");
-
-  const wishForm = document.getElementById("wishForm");
-  const wishInput = document.getElementById("wishInput");
-  const wishButton = document.getElementById("wishButton");
-  const wishResult = document.getElementById("wishResult");
-  const wishText = document.getElementById("wishText");
-
-  const giftBox = document.getElementById("giftBox");
-  const surpriseMessage = document.getElementById("surpriseMessage");
-
-  const secretPaw = document.getElementById("secretPaw");
-  const secretModal = document.getElementById("secretModal");
-  const secretClose = document.getElementById("secretClose");
-
-  const replayButton = document.getElementById("replayButton");
-
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImage = document.getElementById("lightboxImage");
-  const lightboxClose = document.getElementById("lightboxClose");
-  const lightboxPrev = document.getElementById("lightboxPrev");
-  const lightboxNext = document.getElementById("lightboxNext");
-  const lightboxCurrent = document.getElementById("lightboxCurrent");
-
-  const heart3D = document.getElementById("heart3D");
-  const loveScene = document.getElementById("loveScene");
-
-  const cursorGlow = document.querySelector(".cursor-glow");
+"use strict";
 
 
-  /* =========================
-     OPEN EXPERIENCE
-  ========================== */
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-  document.body.classList.add("locked");
+const music = document.getElementById("music");
+const musicButton = document.getElementById("musicButton");
+const musicText = document.getElementById("musicText");
 
-  startButton.addEventListener("click", async () => {
+const heroMusicButton =
+  document.getElementById("heroMusicButton");
 
-    opening.classList.add("hidden");
-    document.body.classList.remove("locked");
-    navbar.classList.add("active");
+const playerPlay =
+  document.getElementById("playerPlay");
 
-    try {
-      await bgMusic.play();
-      musicButton.classList.remove("paused");
-      musicText.textContent = "Sedang diputar";
-    } catch (error) {
-      musicButton.classList.add("paused");
-      musicText.textContent = "Putar musik";
-    }
+const playerPlayIcon =
+  document.getElementById("playerPlayIcon");
 
-    createParticles(18);
+const playerMute =
+  document.getElementById("playerMute");
 
-  });
+const muteText =
+  document.getElementById("muteText");
 
 
-  /* =========================
-     MUSIC
-  ========================== */
+/* =========================================================
+   MUSIC
+========================================================= */
 
-  musicButton.classList.add("paused");
+let musicPlaying = false;
 
-  musicButton.addEventListener("click", async () => {
+function updateMusicUI() {
 
-    if (bgMusic.paused) {
+  if (musicPlaying) {
 
-      try {
-        await bgMusic.play();
-        musicButton.classList.remove("paused");
-        musicText.textContent = "Sedang diputar";
-      } catch (error) {
-        musicText.textContent = "Tidak dapat diputar";
-      }
+    musicText.textContent = "Jeda";
+    playerPlayIcon.textContent = "Ⅱ";
 
-    } else {
+  } else {
 
-      bgMusic.pause();
-      musicButton.classList.add("paused");
-      musicText.textContent = "Musik";
-
-    }
-
-  });
-
-
-  /* =========================
-     MOBILE MENU
-  ========================== */
-
-  menuButton.addEventListener("click", () => {
-    mobileMenu.classList.toggle("open");
-  });
-
-  document.querySelectorAll(".mobile-menu a").forEach(link => {
-
-    link.addEventListener("click", () => {
-      mobileMenu.classList.remove("open");
-    });
-
-  });
-
-
-  /* =========================
-     CURSOR
-  ========================== */
-
-  if (window.matchMedia("(pointer:fine)").matches) {
-
-    window.addEventListener("mousemove", event => {
-
-      cursorGlow.style.opacity = "1";
-      cursorGlow.style.left = `${event.clientX}px`;
-      cursorGlow.style.top = `${event.clientY}px`;
-
-    });
+    musicText.textContent = "Putar";
+    playerPlayIcon.textContent = "▶";
 
   }
 
+}
 
-  /* =========================
-     SCROLL REVEAL
-  ========================== */
+async function toggleMusic() {
 
-  const revealObserver = new IntersectionObserver(
+  if (!musicPlaying) {
+
+    try {
+
+      await music.play();
+
+      musicPlaying = true;
+
+    } catch (error) {
+
+      console.warn(
+        "Browser belum mengizinkan pemutaran otomatis.",
+        error
+      );
+
+    }
+
+  } else {
+
+    music.pause();
+
+    musicPlaying = false;
+
+  }
+
+  updateMusicUI();
+
+}
+
+musicButton.addEventListener(
+  "click",
+  toggleMusic
+);
+
+heroMusicButton.addEventListener(
+  "click",
+  toggleMusic
+);
+
+playerPlay.addEventListener(
+  "click",
+  toggleMusic
+);
+
+playerMute.addEventListener(
+  "click",
+  () => {
+
+    music.muted = !music.muted;
+
+    muteText.textContent =
+      music.muted
+        ? "Bersuara"
+        : "Suara";
+
+  }
+);
+
+music.addEventListener(
+  "play",
+  () => {
+
+    musicPlaying = true;
+    updateMusicUI();
+
+  }
+);
+
+music.addEventListener(
+  "pause",
+  () => {
+
+    musicPlaying = false;
+    updateMusicUI();
+
+  }
+);
+
+
+/* =========================================================
+   REALTIME INDONESIA
+========================================================= */
+
+const timeFormatter = (
+  timeZone
+) => {
+
+  return new Intl.DateTimeFormat(
+    "id-ID",
+    {
+      timeZone,
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hourCycle: "h23"
+    }
+  );
+
+};
+
+
+const dateFormatter =
+  new Intl.DateTimeFormat(
+    "id-ID",
+    {
+      timeZone: "Asia/Jakarta",
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    }
+  );
+
+
+function updateIndonesiaTime() {
+
+  const now = new Date();
+
+  document.getElementById(
+    "wibTime"
+  ).textContent =
+    timeFormatter(
+      "Asia/Jakarta"
+    ).format(now);
+
+  document.getElementById(
+    "witaTime"
+  ).textContent =
+    timeFormatter(
+      "Asia/Makassar"
+    ).format(now);
+
+  document.getElementById(
+    "witTime"
+  ).textContent =
+    timeFormatter(
+      "Asia/Jayapura"
+    ).format(now);
+
+  document.getElementById(
+    "indonesiaDate"
+  ).textContent =
+    dateFormatter.format(now);
+
+  document.getElementById(
+    "lastUpdate"
+  ).textContent =
+    new Intl.DateTimeFormat(
+      "id-ID",
+      {
+        timeZone: "Asia/Jakarta",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hourCycle: "h23"
+      }
+    ).format(now);
+
+}
+
+updateIndonesiaTime();
+
+setInterval(
+  updateIndonesiaTime,
+  1000
+);
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealElements =
+  document.querySelectorAll(".reveal");
+
+const revealObserver =
+  new IntersectionObserver(
     entries => {
 
-      entries.forEach(entry => {
+      entries.forEach(
+        entry => {
 
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          revealObserver.unobserve(entry.target);
+          if (
+            entry.isIntersecting
+          ) {
+
+            entry.target.classList.add(
+              "visible"
+            );
+
+          }
+
         }
-
-      });
+      );
 
     },
     {
@@ -168,1168 +255,729 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  document.querySelectorAll(".reveal").forEach(element => {
-    revealObserver.observe(element);
-  });
+
+revealElements.forEach(
+  element => {
+
+    revealObserver.observe(
+      element
+    );
+
+  }
+);
 
 
-  /* =========================
-     NAVBAR SCROLL
-  ========================== */
+/* =========================================================
+   NAVIGATION ACTIVE STATE
+========================================================= */
 
-  window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 100) {
-      navbar.classList.add("active");
-    } else if (!opening.classList.contains("hidden")) {
-      navbar.classList.remove("active");
-    }
-
-    updateJourneyProgress();
-
-  }, {
-    passive: true
-  });
-
-
-  /* =========================
-     ACTIVE NAVIGATION
-  ========================== */
-
-  const sections = document.querySelectorAll(
+const sections =
+  document.querySelectorAll(
     "main section[id]"
   );
 
-  const navLinks = document.querySelectorAll(
-    ".desktop-nav a"
+const navLinks =
+  document.querySelectorAll(
+    ".nav-link"
   );
 
-  const sectionObserver = new IntersectionObserver(
+const mobileLinks =
+  document.querySelectorAll(
+    ".mobile-nav-item"
+  );
+
+
+const navigationObserver =
+  new IntersectionObserver(
     entries => {
 
-      entries.forEach(entry => {
+      entries.forEach(
+        entry => {
 
-        if (entry.isIntersecting) {
+          if (
+            entry.isIntersecting
+          ) {
 
-          navLinks.forEach(link => {
-            link.classList.remove("active");
+            const id =
+              entry.target.id;
 
-            if (
-              link.getAttribute("href") ===
-              `#${entry.target.id}`
-            ) {
-              link.classList.add("active");
-            }
+            navLinks.forEach(
+              link => {
 
-          });
+                link.classList.toggle(
+                  "active",
+                  link.getAttribute("href") ===
+                  `#${id}`
+                );
+
+              }
+            );
+
+            mobileLinks.forEach(
+              link => {
+
+                link.classList.toggle(
+                  "active",
+                  link.getAttribute("href") ===
+                  `#${id}`
+                );
+
+              }
+            );
+
+          }
 
         }
-
-      });
+      );
 
     },
     {
-      threshold: 0.45
+      threshold: 0.35
     }
   );
 
-  sections.forEach(section => {
-    sectionObserver.observe(section);
-  });
 
+sections.forEach(
+  section => {
 
-  /* =========================
-     JOURNEY PROGRESS
-  ========================== */
-
-  function updateJourneyProgress() {
-
-    const documentHeight =
-      document.documentElement.scrollHeight -
-      window.innerHeight;
-
-    if (documentHeight <= 0) return;
-
-    const progress =
-      Math.min(
-        100,
-        Math.max(
-          0,
-          (window.scrollY / documentHeight) * 100
-        )
-      );
-
-    journeyFill.style.height = `${progress}%`;
-    journeyPercent.textContent =
-      `${Math.round(progress)}%`;
-
-  }
-
-
-  /* =========================
-     INDONESIAN CLOCKS
-  ========================== */
-
-  const clockOptions = {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hourCycle: "h23"
-  };
-
-  const dateOptions = {
-    weekday: "long",
-    day: "2-digit",
-    month: "long",
-    year: "numeric"
-  };
-
-  function updateIndonesiaClocks() {
-
-    const now = new Date();
-
-    document.querySelectorAll(".clock-time").forEach(element => {
-
-      const zone = element.dataset.zone;
-
-      element.textContent =
-        new Intl.DateTimeFormat(
-          "id-ID",
-          {
-            ...clockOptions,
-            timeZone: zone
-          }
-        ).format(now);
-
-    });
-
-    document.querySelectorAll(".clock-date").forEach(element => {
-
-      const zone =
-        element.dataset.dateZone;
-
-      element.textContent =
-        new Intl.DateTimeFormat(
-          "id-ID",
-          {
-            ...dateOptions,
-            timeZone: zone
-          }
-        ).format(now);
-
-    });
-
-  }
-
-  updateIndonesiaClocks();
-
-  setInterval(
-    updateIndonesiaClocks,
-    1000
-  );
-
-
-  /* =========================
-     COUNTDOWN
-  ========================== */
-
-  function getIndonesiaYear() {
-
-    const now = new Date();
-
-    return Number(
-      new Intl.DateTimeFormat(
-        "en-US",
-        {
-          timeZone: "Asia/Jakarta",
-          year: "numeric"
-        }
-      ).format(now)
+    navigationObserver.observe(
+      section
     );
 
   }
+);
 
 
-  function getJakartaDateParts(date) {
+/* =========================================================
+   JOURNEY PROGRESS
+========================================================= */
 
-    const parts =
-      new Intl.DateTimeFormat(
-        "en-US",
-        {
-          timeZone: "Asia/Jakarta",
-          year: "numeric",
-          month: "numeric",
-          day: "numeric",
-          hour: "numeric",
-          minute: "numeric",
-          second: "numeric",
-          hourCycle: "h23"
-        }
-      ).formatToParts(date);
+const progressBar =
+  document.getElementById(
+    "progressBar"
+  );
 
-    const output = {};
-
-    parts.forEach(part => {
-      if (part.type !== "literal") {
-        output[part.type] =
-          Number(part.value);
-      }
-    });
-
-    return output;
-
-  }
+const progressPercent =
+  document.getElementById(
+    "progressPercent"
+  );
 
 
-  function getTargetBirthday() {
+function updateProgress() {
 
-    const now = new Date();
-    const parts = getJakartaDateParts(now);
+  const scrollTop =
+    window.scrollY;
 
-    let year = parts.year;
+  const documentHeight =
+    document.documentElement.scrollHeight -
+    window.innerHeight;
 
-    let target =
-      new Date(
-        Date.UTC(
-          year,
-          7,
-          17,
-          17,
-          0,
-          0
-        )
-      );
-
-    if (now.getTime() >= target.getTime()) {
-
-      target =
-        new Date(
-          Date.UTC(
-            year + 1,
-            7,
-            17,
-            17,
+  const progress =
+    documentHeight <= 0
+      ? 0
+      : Math.min(
+          100,
+          Math.max(
             0,
-            0
+            (scrollTop / documentHeight) * 100
           )
         );
 
-    }
+  progressBar.style.width =
+    `${progress}%`;
 
-    return target;
+  progressPercent.textContent =
+    `${Math.round(progress)}%`;
 
-  }
+}
+
+window.addEventListener(
+  "scroll",
+  updateProgress,
+  { passive: true }
+);
+
+updateProgress();
 
 
-  function updateCountdown() {
+/* =========================================================
+   PHOTO LIGHTBOX
+========================================================= */
 
-    const now = new Date();
-    const target = getTargetBirthday();
+const photos = [
+  "assets/photo-1.jpg",
+  "assets/photo-2.jpg",
+  "assets/photo-3.jpg",
+  "assets/photo-4.jpg"
+];
 
-    let difference =
-      target.getTime() -
-      now.getTime();
-
-    if (difference < 0) {
-      difference = 0;
-    }
-
-    const days =
-      Math.floor(
-        difference /
-        (1000 * 60 * 60 * 24)
-      );
-
-    const hours =
-      Math.floor(
-        (difference %
-          (1000 * 60 * 60 * 24)) /
-        (1000 * 60 * 60)
-      );
-
-    const minutes =
-      Math.floor(
-        (difference %
-          (1000 * 60 * 60)) /
-        (1000 * 60)
-      );
-
-    const seconds =
-      Math.floor(
-        (difference %
-          (1000 * 60)) /
-        1000
-      );
-
-    document.getElementById("countDays")
-      .textContent =
-      String(days).padStart(3, "0");
-
-    document.getElementById("countHours")
-      .textContent =
-      String(hours).padStart(2, "0");
-
-    document.getElementById("countMinutes")
-      .textContent =
-      String(minutes).padStart(2, "0");
-
-    document.getElementById("countSeconds")
-      .textContent =
-      String(seconds).padStart(2, "0");
-
-  }
-
-  updateCountdown();
-
-  setInterval(
-    updateCountdown,
-    1000
+const photoCards =
+  document.querySelectorAll(
+    ".photo-card"
   );
 
+const lightbox =
+  document.getElementById(
+    "lightbox"
+  );
 
-  /* =========================
-     LETTER
-  ========================== */
+const lightboxImage =
+  document.getElementById(
+    "lightboxImage"
+  );
 
-  openLetter.addEventListener("click", () => {
+const lightboxCounter =
+  document.getElementById(
+    "lightboxCounter"
+  );
 
-    envelopeWrap.classList.add("opened");
+const lightboxClose =
+  document.getElementById(
+    "lightboxClose"
+  );
 
-    setTimeout(() => {
+const lightboxPrev =
+  document.getElementById(
+    "lightboxPrev"
+  );
 
-      envelope.classList.add("open");
+const lightboxNext =
+  document.getElementById(
+    "lightboxNext"
+  );
 
-      openLetter.textContent =
-        "Surat telah dibuka";
-
-      openLetter.disabled = true;
-
-      revealLetterParagraphs();
-
-    }, 100);
-
-  });
-
-
-  function revealLetterParagraphs() {
-
-    const paragraphs =
-      document.querySelectorAll(
-        ".letter-body p"
-      );
-
-    paragraphs.forEach((paragraph, index) => {
-
-      paragraph.style.opacity = "0";
-      paragraph.style.transform =
-        "translateY(12px)";
-
-      paragraph.style.transition =
-        "opacity .8s ease, transform .8s ease";
-
-      setTimeout(() => {
-
-        paragraph.style.opacity = "1";
-        paragraph.style.transform =
-          "translateY(0)";
-
-      }, 1000 + index * 180);
-
-    });
-
-  }
+let currentPhoto = 0;
 
 
-  /* =========================
-     CAKE
-  ========================== */
+function openLightbox(
+  index
+) {
 
-  let candleBlown = false;
+  currentPhoto = index;
 
-  blowButton.addEventListener("click", () => {
+  lightboxImage.src =
+    photos[currentPhoto];
 
-    if (candleBlown) return;
+  lightboxCounter.textContent =
+    `${String(currentPhoto + 1).padStart(2, "0")} / 04`;
 
-    candleBlown = true;
+  lightbox.classList.add(
+    "open"
+  );
 
-    cake.classList.add("blown");
-    cakeSmoke.classList.add("active");
+  lightbox.setAttribute(
+    "aria-hidden",
+    "false"
+  );
 
-    blowButton.textContent =
-      "Harapanmu sudah dilepaskan";
+  document.body.style.overflow =
+    "hidden";
 
-    createParticles(40);
-
-    setTimeout(() => {
-
-      document.getElementById("wish")
-        .scrollIntoView({
-          behavior: "smooth"
-        });
-
-    }, 1300);
-
-  });
+}
 
 
-  /* =========================
-     WISH
-  ========================== */
+function closeLightbox() {
 
-  const savedWish =
-    localStorage.getItem(
-      "birthday_wish_18_august"
+  lightbox.classList.remove(
+    "open"
+  );
+
+  lightbox.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  document.body.style.overflow =
+    "";
+
+}
+
+
+function nextPhoto() {
+
+  currentPhoto =
+    (currentPhoto + 1) %
+    photos.length;
+
+  openLightbox(
+    currentPhoto
+  );
+
+}
+
+
+function previousPhoto() {
+
+  currentPhoto =
+    (currentPhoto - 1 + photos.length) %
+    photos.length;
+
+  openLightbox(
+    currentPhoto
+  );
+
+}
+
+
+photoCards.forEach(
+  (card, index) => {
+
+    card.addEventListener(
+      "click",
+      () => {
+
+        openLightbox(index);
+
+      }
     );
 
-  if (savedWish) {
-    showWish(savedWish);
   }
+);
 
+lightboxClose.addEventListener(
+  "click",
+  closeLightbox
+);
 
-  wishButton.addEventListener("click", () => {
+lightboxNext.addEventListener(
+  "click",
+  nextPhoto
+);
 
-    const value =
-      wishInput.value.trim();
+lightboxPrev.addEventListener(
+  "click",
+  previousPhoto
+);
 
-    if (!value) {
+lightbox.addEventListener(
+  "click",
+  event => {
 
-      wishInput.focus();
+    if (
+      event.target === lightbox
+    ) {
 
+      closeLightbox();
+
+    }
+
+  }
+);
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      !lightbox.classList.contains("open")
+    ) {
       return;
     }
 
-    localStorage.setItem(
-      "birthday_wish_18_august",
-      value
-    );
+    if (
+      event.key === "Escape"
+    ) {
 
-    showWish(value);
-
-    createParticles(25);
-
-  });
-
-
-  wishInput.addEventListener("keydown", event => {
-
-    if (event.key === "Enter") {
-      wishButton.click();
-    }
-
-  });
-
-
-  function showWish(value) {
-
-    wishForm.style.display = "none";
-
-    wishText.textContent = value;
-
-    wishResult.classList.add("active");
-
-  }
-
-
-  /* =========================
-     3D HEART DRAG
-  ========================== */
-
-  let heartRotationX = -12;
-  let heartRotationY = -25;
-
-  let draggingHeart = false;
-
-  let lastPointerX = 0;
-  let lastPointerY = 0;
-
-  function renderHeart() {
-
-    heart3D.style.transform =
-      `rotateX(${heartRotationX}deg)
-       rotateY(${heartRotationY}deg)
-       rotateZ(0deg)`;
-
-  }
-
-  loveScene.addEventListener(
-    "pointerdown",
-    event => {
-
-      draggingHeart = true;
-
-      lastPointerX = event.clientX;
-      lastPointerY = event.clientY;
-
-      loveScene.setPointerCapture(
-        event.pointerId
-      );
+      closeLightbox();
 
     }
-  );
-
-
-  loveScene.addEventListener(
-    "pointermove",
-    event => {
-
-      if (!draggingHeart) return;
-
-      const deltaX =
-        event.clientX -
-        lastPointerX;
-
-      const deltaY =
-        event.clientY -
-        lastPointerY;
-
-      heartRotationY +=
-        deltaX * .6;
-
-      heartRotationX -=
-        deltaY * .6;
-
-      heartRotationX =
-        Math.max(
-          -70,
-          Math.min(
-            70,
-            heartRotationX
-          )
-        );
-
-      lastPointerX =
-        event.clientX;
-
-      lastPointerY =
-        event.clientY;
-
-      renderHeart();
-
-    }
-  );
-
-
-  loveScene.addEventListener(
-    "pointerup",
-    () => {
-      draggingHeart = false;
-    }
-  );
-
-  loveScene.addEventListener(
-    "pointercancel",
-    () => {
-      draggingHeart = false;
-    }
-  );
-
-
-  /* =========================
-     AUTO 3D HEART
-  ========================== */
-
-  let autoRotation = true;
-
-  setInterval(() => {
 
     if (
-      !draggingHeart &&
-      autoRotation &&
-      !window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches
+      event.key === "ArrowRight"
     ) {
 
-      heartRotationY += .12;
-
-      renderHeart();
+      nextPhoto();
 
     }
 
-  }, 30);
+    if (
+      event.key === "ArrowLeft"
+    ) {
 
-
-  loveScene.addEventListener(
-    "pointerdown",
-    () => {
-      autoRotation = false;
-
-      clearTimeout(
-        window.__heartResumeTimer
-      );
-
-      window.__heartResumeTimer =
-        setTimeout(() => {
-          autoRotation = true;
-        }, 5000);
+      previousPhoto();
 
     }
+
+  }
+);
+
+
+/* =========================================================
+   3D HEART
+========================================================= */
+
+const heart =
+  document.getElementById(
+    "heart3D"
   );
 
+let rotateX = -12;
+let rotateY = -22;
 
-  /* =========================
-     GIFT BOX
-  ========================== */
+let dragging = false;
 
-  giftBox.addEventListener("click", () => {
+let startX = 0;
+let startY = 0;
 
-    giftBox.classList.toggle("open");
-
-    if (giftBox.classList.contains("open")) {
-
-      surpriseMessage.classList.add("active");
-
-      createParticles(35);
-
-      setTimeout(() => {
-
-        surpriseMessage.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-
-      }, 500);
-
-    } else {
-
-      surpriseMessage.classList.remove(
-        "active"
-      );
-
-    }
-
-  });
+let startRotateX = rotateX;
+let startRotateY = rotateY;
 
 
-  /* =========================
-     SECRET PAW
-  ========================== */
+function renderHeart() {
 
-  secretPaw.addEventListener(
-    "click",
-    () => {
+  heart.style.transform =
+    `
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      rotateZ(-3deg)
+    `;
 
-      secretModal.classList.add("active");
-      secretModal.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-
-      document.body.classList.add("locked");
-
-      createParticles(20);
-
-    }
-  );
+}
 
 
-  function closeSecret() {
+heart.addEventListener(
+  "pointerdown",
+  event => {
 
-    secretModal.classList.remove(
-      "active"
-    );
+    dragging = true;
 
-    secretModal.setAttribute(
-      "aria-hidden",
-      "true"
-    );
+    startX = event.clientX;
+    startY = event.clientY;
 
-    document.body.classList.remove(
-      "locked"
+    startRotateX = rotateX;
+    startRotateY = rotateY;
+
+    heart.setPointerCapture(
+      event.pointerId
     );
 
   }
+);
 
 
-  secretClose.addEventListener(
-    "click",
-    closeSecret
-  );
+heart.addEventListener(
+  "pointermove",
+  event => {
 
-
-  secretModal.addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target ===
-        secretModal
-      ) {
-        closeSecret();
-      }
-
+    if (!dragging) {
+      return;
     }
-  );
 
+    const deltaX =
+      event.clientX - startX;
 
-  /* =========================
-     PHOTO LIGHTBOX
-  ========================== */
+    const deltaY =
+      event.clientY - startY;
 
-  const photos = [
-    "assets/photo-1.jpg",
-    "assets/photo-2.jpg",
-    "assets/photo-3.jpg",
-    "assets/photo-4.jpg"
-  ];
+    rotateY =
+      startRotateY +
+      deltaX * .45;
 
-  let currentPhoto = 0;
+    rotateX =
+      startRotateX -
+      deltaY * .45;
 
-  document
-    .querySelectorAll(".memory-card")
-    .forEach(card => {
-
-      card.addEventListener(
-        "click",
-        () => {
-
-          currentPhoto =
-            Number(
-              card.dataset.photo
-            );
-
-          openPhoto(
-            currentPhoto
-          );
-
-        }
+    rotateX =
+      Math.max(
+        -55,
+        Math.min(
+          55,
+          rotateX
+        )
       );
 
-    });
+    renderHeart();
+
+  }
+);
 
 
-  function openPhoto(index) {
+heart.addEventListener(
+  "pointerup",
+  () => {
 
-    currentPhoto =
-      (index + photos.length) %
-      photos.length;
+    dragging = false;
 
-    lightboxImage.src =
-      photos[currentPhoto];
+  }
+);
 
-    lightboxCurrent.textContent =
-      String(currentPhoto + 1)
-        .padStart(2, "0");
 
-    lightbox.classList.add("active");
+heart.addEventListener(
+  "pointercancel",
+  () => {
 
-    lightbox.setAttribute(
-      "aria-hidden",
-      "false"
+    dragging = false;
+
+  }
+);
+
+
+heart.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key === "ArrowLeft"
+    ) {
+
+      rotateY -= 10;
+
+    }
+
+    if (
+      event.key === "ArrowRight"
+    ) {
+
+      rotateY += 10;
+
+    }
+
+    if (
+      event.key === "ArrowUp"
+    ) {
+
+      rotateX -= 10;
+
+    }
+
+    if (
+      event.key === "ArrowDown"
+    ) {
+
+      rotateX += 10;
+
+    }
+
+    renderHeart();
+
+  }
+);
+
+
+renderHeart();
+
+
+/* =========================================================
+   PARALLAX
+========================================================= */
+
+const heroVisual =
+  document.querySelector(
+    ".hero-visual"
+  );
+
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    if (
+      window.innerWidth <= 700
+    ) {
+      return;
+    }
+
+    const scroll =
+      window.scrollY;
+
+    if (
+      scroll < window.innerHeight
+    ) {
+
+      heroVisual.style.transform =
+        `translateY(${scroll * .08}px)`;
+
+    }
+
+  },
+  { passive: true }
+);
+
+
+/* =========================================================
+   CARD HOVER LIGHT
+========================================================= */
+
+const glassCards =
+  document.querySelectorAll(
+    ".timeline-card, .clock-card, .quote-card, .birthday-card"
+  );
+
+
+glassCards.forEach(
+  card => {
+
+    card.addEventListener(
+      "pointermove",
+      event => {
+
+        const rect =
+          card.getBoundingClientRect();
+
+        const x =
+          event.clientX -
+          rect.left;
+
+        const y =
+          event.clientY -
+          rect.top;
+
+        const px =
+          (x / rect.width) * 100;
+
+        const py =
+          (y / rect.height) * 100;
+
+        card.style.background =
+          `
+          radial-gradient(
+            circle at ${px}% ${py}%,
+            rgba(255,255,255,.12),
+            transparent 35%
+          ),
+          linear-gradient(
+            145deg,
+            rgba(255,255,255,.09),
+            rgba(255,255,255,.035)
+          )
+          `;
+
+      }
     );
+
+    card.addEventListener(
+      "pointerleave",
+      () => {
+
+        card.style.background =
+          "";
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   PHOTO KEYBOARD ACCESS
+========================================================= */
+
+photoCards.forEach(
+  (card, index) => {
+
+    card.setAttribute(
+      "tabindex",
+      "0"
+    );
+
+    card.setAttribute(
+      "role",
+      "button"
+    );
+
+    card.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
+
+          event.preventDefault();
+
+          openLightbox(index);
+
+        }
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   MUSIC START ON FIRST USER INTERACTION
+========================================================= */
+
+let attemptedAutoplay = false;
+
+document.addEventListener(
+  "click",
+  async () => {
+
+    if (
+      attemptedAutoplay
+    ) {
+      return;
+    }
+
+    attemptedAutoplay = true;
+
+    try {
+
+      await music.play();
+
+      musicPlaying = true;
+
+      updateMusicUI();
+
+    } catch {
+
+      /*
+        Browser dapat menolak autoplay.
+        Tombol musik tetap tersedia.
+      */
+
+    }
+
+  },
+  {
+    once: true
+  }
+);
+
+
+/* =========================================================
+   PAGE LOAD
+========================================================= */
+
+window.addEventListener(
+  "load",
+  () => {
 
     document.body.classList.add(
-      "locked"
+      "loaded"
+    );
+
+    setTimeout(
+      () => {
+
+        revealElements.forEach(
+          element => {
+
+            const rect =
+              element.getBoundingClientRect();
+
+            if (
+              rect.top <
+              window.innerHeight
+            ) {
+
+              element.classList.add(
+                "visible"
+              );
+
+            }
+
+          }
+        );
+
+      },
+      150
     );
 
   }
-
-
-  function closeLightbox() {
-
-    lightbox.classList.remove(
-      "active"
-    );
-
-    lightbox.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-    document.body.classList.remove(
-      "locked"
-    );
-
-  }
-
-
-  lightboxClose.addEventListener(
-    "click",
-    closeLightbox
-  );
-
-  lightboxPrev.addEventListener(
-    "click",
-    () => {
-      openPhoto(currentPhoto - 1);
-    }
-  );
-
-  lightboxNext.addEventListener(
-    "click",
-    () => {
-      openPhoto(currentPhoto + 1);
-    }
-  );
-
-
-  lightbox.addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target ===
-        lightbox
-      ) {
-        closeLightbox();
-      }
-
-    }
-  );
-
-
-  /* =========================
-     KEYBOARD
-  ========================== */
-
-  document.addEventListener(
-    "keydown",
-    event => {
-
-      if (
-        lightbox.classList.contains(
-          "active"
-        )
-      ) {
-
-        if (event.key === "Escape") {
-          closeLightbox();
-        }
-
-        if (event.key === "ArrowLeft") {
-          openPhoto(currentPhoto - 1);
-        }
-
-        if (event.key === "ArrowRight") {
-          openPhoto(currentPhoto + 1);
-        }
-
-      }
-
-      if (
-        secretModal.classList.contains(
-          "active"
-        ) &&
-        event.key === "Escape"
-      ) {
-
-        closeSecret();
-
-      }
-
-    }
-  );
-
-
-  /* =========================
-     BACKGROUND PARTICLES
-  ========================== */
-
-  document.addEventListener(
-    "click",
-    event => {
-
-      const interactive =
-        event.target.closest(
-          "button, a, input"
-        );
-
-      if (interactive) return;
-
-      createSmallParticle(
-        event.clientX,
-        event.clientY
-      );
-
-    }
-  );
-
-
-  function createSmallParticle(x, y) {
-
-    const particle =
-      document.createElement("span");
-
-    particle.className =
-      "click-particle";
-
-    particle.style.left =
-      `${x}px`;
-
-    particle.style.top =
-      `${y}px`;
-
-    document.body.appendChild(
-      particle
-    );
-
-    requestAnimationFrame(() => {
-
-      particle.style.transform =
-        `translate(
-          ${Math.random() * 30 - 15}px,
-          ${-40 - Math.random() * 40}px
-        ) scale(0)`;
-
-      particle.style.opacity = "0";
-
-    });
-
-    setTimeout(() => {
-      particle.remove();
-    }, 900);
-
-  }
-
-
-  function createParticles(amount) {
-
-    for (
-      let i = 0;
-      i < amount;
-      i++
-    ) {
-
-      setTimeout(() => {
-
-        const particle =
-          document.createElement(
-            "span"
-          );
-
-        particle.className =
-          "celebration-particle";
-
-        particle.style.left =
-          `${Math.random() * 100}%`;
-
-        particle.style.top =
-          `${35 + Math.random() * 40}%`;
-
-        particle.style.setProperty(
-          "--x",
-          `${Math.random() * 220 - 110}px`
-        );
-
-        particle.style.setProperty(
-          "--y",
-          `${Math.random() * -300 - 50}px`
-        );
-
-        document.body.appendChild(
-          particle
-        );
-
-        setTimeout(() => {
-          particle.remove();
-        }, 1800);
-
-      }, i * 20);
-
-    }
-
-  }
-
-
-  /* =========================
-     DYNAMIC PARTICLE CSS
-  ========================== */
-
-  const particleStyle =
-    document.createElement("style");
-
-  particleStyle.textContent = `
-    .click-particle {
-      position: fixed;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: #fff;
-      z-index: 9998;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      transition:
-        transform .9s cubic-bezier(.22,1,.36,1),
-        opacity .9s ease;
-    }
-
-    .celebration-particle {
-      position: fixed;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #fff;
-      z-index: 9998;
-      pointer-events: none;
-      animation:
-        celebrationParticle 1.8s
-        cubic-bezier(.22,1,.36,1)
-        forwards;
-    }
-
-    @keyframes celebrationParticle {
-      0% {
-        opacity: 1;
-        transform:
-          translate(0,0)
-          rotate(0)
-          scale(1);
-      }
-
-      100% {
-        opacity: 0;
-        transform:
-          translate(var(--x),var(--y))
-          rotate(360deg)
-          scale(.2);
-      }
-    }
-  `;
-
-  document.head.appendChild(
-    particleStyle
-  );
-
-
-  /* =========================
-     REPLAY
-  ========================== */
-
-  replayButton.addEventListener(
-    "click",
-    async () => {
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-      await new Promise(
-        resolve =>
-          setTimeout(resolve, 700)
-      );
-
-      opening.classList.remove(
-        "hidden"
-      );
-
-      navbar.classList.remove(
-        "active"
-      );
-
-      document.body.classList.add(
-        "locked"
-      );
-
-      bgMusic.pause();
-      bgMusic.currentTime = 0;
-
-      musicButton.classList.add(
-        "paused"
-      );
-
-      musicText.textContent =
-        "Musik";
-
-      cake.classList.remove(
-        "blown"
-      );
-
-      cakeSmoke.classList.remove(
-        "active"
-      );
-
-      candleBlown = false;
-
-      blowButton.textContent =
-        "Padamkan lilin";
-
-      giftBox.classList.remove(
-        "open"
-      );
-
-      surpriseMessage.classList.remove(
-        "active"
-      );
-
-      mobileMenu.classList.remove(
-        "open"
-      );
-
-      heartRotationX = -12;
-      heartRotationY = -25;
-
-      renderHeart();
-
-    }
-  );
-
-
-  /* =========================
-     TIMELINE INTERACTION
-  ========================== */
-
-  document
-    .querySelectorAll(".timeline-item")
-    .forEach(item => {
-
-      item.addEventListener(
-        "click",
-        () => {
-
-          document
-            .querySelectorAll(
-              ".timeline-item"
-            )
-            .forEach(other => {
-
-              if (other !== item) {
-                other.classList.remove(
-                  "active"
-                );
-              }
-
-            });
-
-          item.classList.toggle(
-            "active"
-          );
-
-        }
-      );
-
-    });
-
-
-  /* =========================
-     IMAGE ERROR HANDLING
-  ========================== */
-
-  document
-    .querySelectorAll("img")
-    .forEach(image => {
-
-      image.addEventListener(
-        "error",
-        () => {
-
-          image.style.background =
-            "linear-gradient(135deg,#111,#333)";
-
-          image.style.minHeight =
-            "200px";
-
-        }
-      );
-
-    });
-
-
-  /* =========================
-     INITIAL
-  ========================== */
-
-  renderHeart();
-  updateJourneyProgress();
-
-});
+);

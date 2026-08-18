@@ -2,136 +2,129 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#080808">
-  <meta name="description" content="Sebuah perjalanan kecil untuk seseorang yang begitu berarti.">
-  <title>Untukmu — Sebuah Hari yang Istimewa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111114">
+  <meta name="description" content="Sebuah ruang kecil yang dibuat untuk merayakan seseorang yang berarti.">
+
+  <title>Untukmu — Sebuah Perayaan Kecil</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <div class="noise"></div>
-  <div class="cursor-glow"></div>
+  <!-- =========================================================
+       AMBIENT BACKGROUND
+  ========================================================== -->
 
-  <!-- =========================
-       OPENING
-  ========================== -->
-  <div class="opening" id="opening">
-    <div class="opening-orbit"></div>
-    <div class="opening-inner">
-
-      <div class="mini-label">SEBUAH PERJALANAN KECIL</div>
-
-      <div class="opening-heart">
-        <div class="heart-3d heart-small">
-          <span></span>
-        </div>
-      </div>
-
-      <h1>
-        Ada sesuatu<br>
-        <span>untukmu.</span>
-      </h1>
-
-      <p>
-        Tidak semua hal yang ingin disampaikan<br>
-        bisa selesai hanya dengan beberapa kata.
-      </p>
-
-      <button class="primary-btn" id="startButton">
-        <span>Mulai perjalanan</span>
-        <i></i>
-      </button>
-
-      <div class="opening-note">
-        18 AGUSTUS
-      </div>
-
-    </div>
+  <div class="background">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+    <div class="noise"></div>
   </div>
 
+  <!-- =========================================================
+       MUSIC
+  ========================================================== -->
 
-  <!-- =========================
-       NAVIGATION
-  ========================== -->
+  <audio id="music" preload="metadata">
+    <source src="assets/music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- =========================================================
+       TOP NAVIGATION
+  ========================================================== -->
+
   <header class="navbar" id="navbar">
 
     <a href="#home" class="brand">
       <span class="brand-dot"></span>
-      UNTUKMU
+      <span>untukmu</span>
     </a>
 
     <nav class="desktop-nav">
-      <a href="#home">Beranda</a>
-      <a href="#story">Cerita</a>
-      <a href="#timeline">Linimasa</a>
-      <a href="#memories">Kenangan</a>
-      <a href="#letter">Surat</a>
-      <a href="#birthday">Hari Ini</a>
-      <a href="#love">Love</a>
-      <a href="#surprise">Kejutan</a>
+      <a href="#home" class="nav-link active">Beranda</a>
+      <a href="#cerita" class="nav-link">Cerita</a>
+      <a href="#timeline" class="nav-link">Perjalanan</a>
+      <a href="#kenangan" class="nav-link">Kenangan</a>
+      <a href="#surat" class="nav-link">Surat</a>
+      <a href="#waktu" class="nav-link">Waktu</a>
+      <a href="#love" class="nav-link">Cinta</a>
     </nav>
 
-    <button class="music-button" id="musicButton" aria-label="Putar musik">
+    <button
+      class="music-button"
+      id="musicButton"
+      aria-label="Putar musik"
+    >
       <span class="music-icon">
-        <i></i><i></i><i></i><i></i>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </span>
-      <span id="musicText">Musik</span>
-    </button>
-
-    <button class="menu-button" id="menuButton" aria-label="Buka menu">
-      <span></span>
-      <span></span>
+      <span id="musicText">Putar</span>
     </button>
 
   </header>
 
+  <!-- =========================================================
+       MOBILE NAV
+  ========================================================== -->
 
-  <!-- =========================
-       MOBILE MENU
-  ========================== -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-inner">
-      <a href="#home">01 — Beranda</a>
-      <a href="#story">02 — Cerita</a>
-      <a href="#timeline">03 — Linimasa</a>
-      <a href="#memories">04 — Kenangan</a>
-      <a href="#letter">05 — Surat</a>
-      <a href="#birthday">06 — Hari Ini</a>
-      <a href="#love">07 — Love</a>
-      <a href="#surprise">08 — Kejutan</a>
-    </div>
-  </div>
+  <nav class="mobile-nav">
 
+    <a href="#home" class="mobile-nav-item active">
+      <span class="mobile-icon"></span>
+      <span>Awal</span>
+    </a>
 
-  <!-- =========================
-       JOURNEY PROGRESS
-  ========================== -->
+    <a href="#cerita" class="mobile-nav-item">
+      <span class="mobile-icon"></span>
+      <span>Cerita</span>
+    </a>
+
+    <a href="#timeline" class="mobile-nav-item">
+      <span class="mobile-icon"></span>
+      <span>Jejak</span>
+    </a>
+
+    <a href="#kenangan" class="mobile-nav-item">
+      <span class="mobile-icon"></span>
+      <span>Foto</span>
+    </a>
+
+    <a href="#surat" class="mobile-nav-item">
+      <span class="mobile-icon"></span>
+      <span>Surat</span>
+    </a>
+
+  </nav>
+
+  <!-- =========================================================
+       PROGRESS
+  ========================================================== -->
+
   <div class="journey-progress">
-    <div class="journey-line">
-      <span id="journeyFill"></span>
+    <div class="journey-progress-line">
+      <span id="progressBar"></span>
     </div>
-    <span id="journeyPercent">0%</span>
+    <span id="progressPercent">0%</span>
   </div>
-
 
   <main>
 
-    <!-- =========================
+    <!-- =======================================================
          HERO
-    ========================== -->
+    ======================================================== -->
+
     <section class="hero section" id="home">
-
-      <div class="hero-bg-word">LOVE</div>
-
-      <div class="hero-decoration hero-decoration-1"></div>
-      <div class="hero-decoration hero-decoration-2"></div>
 
       <div class="hero-content">
 
         <div class="eyebrow reveal">
-          HARI YANG SEDERHANA, UNTUK SESEORANG YANG ISTIMEWA
+          SEBUAH HARI YANG LAYAK DIRAYAKAN
         </div>
 
         <h1 class="hero-title reveal">
@@ -141,123 +134,127 @@
 
         <div class="hero-date reveal">
           <span>18</span>
-          <div>
-            <small>AGUSTUS</small>
-            <strong>1993</strong>
-          </div>
+          <i></i>
+          <span>AGUSTUS</span>
+          <i></i>
+          <span>1993</span>
         </div>
 
         <p class="hero-description reveal">
-          Hari ini bukan hanya tentang bertambahnya satu angka.
+          Hari ini bukan sekadar tentang bertambahnya satu angka.
           Hari ini adalah tentang merayakan keberadaan seseorang
-          yang, meskipun berada jauh dari pandangan mata,
-          tetap mampu tinggal begitu dekat di dalam hati.
+          yang begitu berarti, meskipun jarak sering kali menjadi
+          bagian dari cerita kita.
         </p>
 
-        <a href="#story" class="scroll-hint reveal">
-          <span>Gulir perlahan</span>
-          <i></i>
-        </a>
+        <div class="hero-actions reveal">
+
+          <a href="#cerita" class="primary-button">
+            <span>Mulai perjalanan</span>
+            <span class="button-arrow">↓</span>
+          </a>
+
+          <button class="secondary-button" id="heroMusicButton">
+            Dengarkan lagu
+          </button>
+
+        </div>
 
       </div>
 
+      <!-- HERO VISUAL -->
 
-      <!-- PHOTO 1 -->
-      <div class="hero-photo reveal">
-        <div class="photo-frame portrait-916">
-          <img src="assets/photo-1.jpg" alt="Foto kenangan pertama">
-          <div class="photo-overlay"></div>
+      <div class="hero-visual reveal">
+
+        <div class="hero-photo-frame">
+
+          <div class="hero-photo">
+
+            <img
+              src="assets/photo-4.jpg"
+              alt="Kenangan"
+            >
+
+          </div>
+
+          <div class="photo-glass-label">
+            <span>untuk seseorang</span>
+            <strong>yang berarti</strong>
+          </div>
+
         </div>
 
-        <div class="photo-caption">
-          <span>01</span>
-          <p>Satu dari banyak hal<br>yang ingin selalu diingat.</p>
+        <div class="floating-card card-top">
+          <span class="small-label">HARI INI</span>
+          <strong>18 AGUSTUS</strong>
         </div>
+
+        <div class="floating-card card-bottom">
+          <span class="small-label">MESKI JAUH</span>
+          <strong>SELALU DEKAT</strong>
+        </div>
+
       </div>
 
-      <div class="hero-number">01</div>
+      <div class="scroll-indicator">
+        <span>geser untuk melanjutkan</span>
+        <div class="scroll-line"></div>
+      </div>
 
     </section>
 
 
-    <!-- =========================
-         STORY
-    ========================== -->
-    <section class="story section" id="story">
+    <!-- =======================================================
+         INTRO
+    ======================================================== -->
 
-      <div class="section-top">
-        <span class="section-number">02</span>
-        <span class="section-label">CERITA</span>
-      </div>
+    <section class="intro section" id="cerita">
 
-      <div class="story-grid">
+      <div class="section-heading reveal">
 
-        <div class="story-title">
-          <p class="eyebrow reveal">TENTANG JARAK</p>
+        <span class="section-number">01</span>
 
-          <h2 class="reveal">
-            Ada hubungan yang
-            tidak tumbuh karena
-            <em>kedekatan.</em>
+        <div>
+          <span class="section-kicker">TENTANG KITA</span>
+          <h2>
+            Ada cerita yang tidak
+            membutuhkan jarak untuk
+            terasa dekat.
           </h2>
         </div>
 
-        <div class="story-copy">
+      </div>
 
-          <p class="large-copy reveal">
-            Ada hubungan yang justru belajar menjadi kuat
-            karena jarak.
+      <div class="intro-grid">
+
+        <div class="intro-big reveal">
+          <p>
+            Mungkin kita tidak selalu berada di tempat yang sama.
+            Tidak selalu bisa bertemu ketika rindu datang.
+            Tidak selalu bisa berada di samping satu sama lain
+            ketika hari terasa berat.
           </p>
 
-          <p class="reveal">
-            Jarak membuat kita memahami bahwa kehadiran tidak
-            selalu berarti berada di ruangan yang sama. Kadang,
-            kehadiran adalah pesan sederhana di tengah kesibukan.
-            Sebuah pertanyaan kecil tentang bagaimana hari ini
-            berjalan. Sebuah kabar yang mungkin terlihat biasa,
-            tetapi diam-diam begitu berarti.
+          <p>
+            Tetapi ada sesuatu yang tetap bertahan meskipun
+            kilometer memisahkan kita.
           </p>
+        </div>
 
-          <p class="reveal">
-            LDR mengajarkan sesuatu yang tidak selalu mudah:
-            bagaimana mempertahankan rasa ketika tidak bisa
-            bertemu kapan saja, bagaimana tetap percaya ketika
-            tidak bisa melihat secara langsung, dan bagaimana
-            tetap memilih seseorang meskipun jarak membuat
-            semuanya terasa sedikit lebih sulit.
-          </p>
+        <div class="intro-side reveal">
 
-          <p class="reveal">
-            Mungkin kita tidak selalu memiliki kesempatan untuk
-            duduk berdampingan. Tidak selalu bisa berbagi tempat,
-            waktu, atau momen secara langsung. Tetapi ada hal-hal
-            yang tidak membutuhkan jarak untuk terasa dekat.
-          </p>
-
-          <div class="story-quote reveal">
+          <div class="quote-card">
             <span class="quote-mark">“</span>
+
             <p>
-              Sebab terkadang, seseorang bisa berada sangat jauh
-              dari mata, tetapi tetap menjadi salah satu tempat
-              paling dekat bagi hati.
+              Jarak hanya memisahkan tempat.
+              Bukan perasaan, bukan doa,
+              dan bukan seseorang yang
+              selalu kita ingat.
             </p>
+
+            <span class="quote-line"></span>
           </div>
-
-          <p class="reveal">
-            Dan mungkin itulah bagian paling indah dari perjalanan
-            ini. Kita belajar bahwa rasa bukan hanya tentang
-            seberapa sering kita bertemu, tetapi tentang bagaimana
-            kita tetap hadir ketika pertemuan belum bisa terjadi.
-          </p>
-
-          <p class="reveal">
-            Tentang menunggu tanpa menjadikan penantian sebagai
-            beban. Tentang memahami kesibukan. Tentang memberi
-            ruang. Tentang tetap mendoakan dari tempat yang berbeda.
-            Tentang menjadi seseorang yang bisa berkata,
-            “aku tetap di sini,” bahkan ketika keadaan membuat
-            kita belum bisa berada di tempat yang sama.
-          </p>
 
         </div>
 
@@ -266,174 +263,298 @@
     </section>
 
 
-    <!-- =========================
-         INDONESIA CLOCK
-    ========================== -->
-    <section class="clock-section section">
+    <!-- =======================================================
+         LONG STORY
+    ======================================================== -->
 
-      <div class="clock-header reveal">
-        <span class="section-label">WAKTU INDONESIA</span>
-        <h2>
-          Di mana pun kita berada,<br>
-          waktu tetap berjalan.
-        </h2>
-        <p>
-          Tiga zona waktu Indonesia, diperbarui secara langsung.
-        </p>
-      </div>
+    <section class="story section">
 
-      <div class="clock-grid">
+      <div class="story-grid">
 
-        <article class="clock-card reveal">
-          <span class="clock-zone">WIB</span>
-          <h3>Waktu Indonesia Barat</h3>
-          <strong class="clock-time" data-zone="Asia/Jakarta">00:00:00</strong>
-          <span class="clock-date" data-date-zone="Asia/Jakarta">Memuat...</span>
-          <small>UTC +07:00</small>
-        </article>
+        <div class="story-image reveal">
+          <img
+            src="assets/photo-1.jpg"
+            alt="Kenangan pertama"
+          >
+        </div>
 
-        <article class="clock-card clock-card-main reveal">
-          <span class="clock-zone">WITA</span>
-          <h3>Waktu Indonesia Tengah</h3>
-          <strong class="clock-time" data-zone="Asia/Makassar">00:00:00</strong>
-          <span class="clock-date" data-date-zone="Asia/Makassar">Memuat...</span>
-          <small>UTC +08:00</small>
-        </article>
+        <div class="story-content reveal">
 
-        <article class="clock-card reveal">
-          <span class="clock-zone">WIT</span>
-          <h3>Waktu Indonesia Timur</h3>
-          <strong class="clock-time" data-zone="Asia/Jayapura">00:00:00</strong>
-          <span class="clock-date" data-date-zone="Asia/Jayapura">Memuat...</span>
-          <small>UTC +09:00</small>
-        </article>
+          <span class="section-kicker">JARAK</span>
+
+          <h2>
+            Tentang rindu yang
+            belajar bersabar.
+          </h2>
+
+          <p>
+            Hubungan yang dijalani dari kejauhan mengajarkan
+            banyak hal. Tentang menunggu. Tentang percaya.
+            Tentang memahami bahwa tidak semua bentuk kasih
+            sayang harus hadir dalam bentuk pelukan.
+          </p>
+
+          <p>
+            Ada hari ketika kita ingin sekali bertemu,
+            tetapi keadaan berkata belum.
+          </p>
+
+          <p>
+            Ada malam ketika percakapan terasa menjadi
+            satu-satunya cara untuk merasa dekat.
+          </p>
+
+          <p>
+            Dan ada pagi ketika kita kembali menjalani
+            kehidupan masing-masing sambil membawa satu
+            perasaan yang sama:
+            semoga hari ini semuanya baik-baik saja.
+          </p>
+
+          <div class="story-line"></div>
+
+          <strong>
+            Mungkin itulah arti mencintai dari jauh:
+            tetap memilih seseorang, bahkan ketika
+            kita tidak bisa selalu melihatnya.
+          </strong>
+
+        </div>
 
       </div>
 
     </section>
 
 
-    <!-- =========================
+    <!-- =======================================================
          TIMELINE
-    ========================== -->
+    ======================================================== -->
+
     <section class="timeline-section section" id="timeline">
 
-      <div class="section-top">
-        <span class="section-number">03</span>
-        <span class="section-label">LINIMASA</span>
-      </div>
+      <div class="section-heading reveal">
 
-      <div class="timeline-intro">
-        <p class="eyebrow reveal">PERJALANAN YANG BELUM SELESAI</p>
+        <span class="section-number">02</span>
 
-        <h2 class="reveal">
-          Tidak semua perjalanan<br>
-          harus ditempuh <em>bersama-sama.</em>
-        </h2>
+        <div>
+          <span class="section-kicker">PERJALANAN</span>
+          <h2>
+            Beberapa titik kecil
+            dalam perjalanan yang panjang.
+          </h2>
+        </div>
 
-        <p class="timeline-intro-copy reveal">
-          Ada perjalanan yang cukup dijalani dengan saling
-          percaya, saling memahami, dan saling menunggu.
-          Linimasa ini bukan tentang menghitung hari,
-          tetapi tentang menghargai setiap bagian kecil
-          yang membawa kita sampai pada hari ini.
-        </p>
       </div>
 
       <div class="timeline">
 
-        <article class="timeline-item active reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-number">01</div>
-          <div class="timeline-content">
-            <span>AWAL</span>
-            <h3>Ketika semuanya dimulai</h3>
-            <p>
-              Setiap hubungan selalu memiliki sebuah titik awal.
-              Tidak selalu besar. Tidak selalu dramatis.
-              Terkadang ia datang dengan sederhana, lalu perlahan
-              menjadi sesuatu yang tidak lagi sederhana di hati.
-            </p>
+        <article class="timeline-item reveal">
+
+          <div class="timeline-marker">
+            <span>01</span>
           </div>
+
+          <div class="timeline-card">
+
+            <span class="timeline-date">
+              AWAL
+            </span>
+
+            <h3>
+              Ketika semuanya dimulai
+            </h3>
+
+            <p>
+              Setiap hubungan memiliki awal.
+              Tidak selalu dimulai dengan sesuatu yang besar.
+              Kadang hanya percakapan sederhana,
+              perhatian kecil, atau kehadiran seseorang
+              yang perlahan terasa berbeda.
+            </p>
+
+            <p>
+              Dari sesuatu yang sederhana itu,
+              sebuah cerita mulai menemukan jalannya.
+            </p>
+
+          </div>
+
         </article>
 
-        <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-number">02</div>
-          <div class="timeline-content">
-            <span>JARAK</span>
-            <h3>Ketika tempat menjadi berbeda</h3>
-            <p>
-              Jarak kemudian menjadi bagian dari cerita.
-              Bukan sesuatu yang selalu mudah, tetapi sesuatu
-              yang mengajarkan bahwa rasa dapat bertahan
-              meskipun dua orang tidak selalu berada di tempat
-              yang sama.
-            </p>
+
+        <article class="timeline-item timeline-right reveal">
+
+          <div class="timeline-marker">
+            <span>02</span>
           </div>
+
+          <div class="timeline-card">
+
+            <span class="timeline-date">
+              JARAK
+            </span>
+
+            <h3>
+              Ketika jarak menjadi bagian dari cerita
+            </h3>
+
+            <p>
+              Ada saat ketika kedekatan tidak lagi diukur
+              dari seberapa sering kita bertemu.
+            </p>
+
+            <p>
+              Jarak membuat kita belajar bahwa perhatian
+              dapat dikirim lewat kata-kata, bahwa rindu
+              dapat disimpan dengan sabar, dan bahwa
+              kehadiran seseorang dapat tetap terasa
+              walaupun tidak berada di depan mata.
+            </p>
+
+          </div>
+
         </article>
 
-        <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-number">03</div>
-          <div class="timeline-content">
-            <span>MENUNGGU</span>
-            <h3>Tentang hari-hari yang panjang</h3>
-            <p>
-              Ada hari ketika pesan datang cepat.
-              Ada hari ketika kesibukan membuat percakapan
-              harus menunggu. Tetapi menunggu tidak selalu
-              berarti kehilangan. Kadang, menunggu adalah
-              bentuk sederhana dari memilih untuk tetap percaya.
-            </p>
-          </div>
-        </article>
 
         <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-number">04</div>
-          <div class="timeline-content">
-            <span>MEMAHAMI</span>
-            <h3>Belajar mengenal dari kejauhan</h3>
-            <p>
-              Kita belajar mengenal bukan hanya dari tatapan,
-              tetapi dari cara seseorang berbicara, cara ia
-              menghadapi hari yang berat, cara ia tetap berusaha,
-              dan cara ia memilih untuk terus berjalan.
-            </p>
+
+          <div class="timeline-marker">
+            <span>03</span>
           </div>
+
+          <div class="timeline-card">
+
+            <span class="timeline-date">
+              HARI-HARI
+            </span>
+
+            <h3>
+              Menjalani hari dari dua tempat
+            </h3>
+
+            <p>
+              Kita mungkin memiliki rutinitas masing-masing.
+              Bangun di tempat yang berbeda.
+              Menjalani kesibukan yang berbeda.
+              Bertemu orang-orang yang berbeda.
+            </p>
+
+            <p>
+              Tetapi selalu ada satu bagian kecil dari hari
+              yang membuat kita kembali mengingat satu sama lain.
+            </p>
+
+          </div>
+
         </article>
 
-        <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-number">05</div>
-          <div class="timeline-content">
-            <span>HARI INI</span>
-            <h3>Satu tanggal yang layak dirayakan</h3>
-            <p>
-              Dan sekarang kita sampai pada hari ini.
-              Hari ketika keberadaanmu layak dirayakan.
-              Bukan karena hidup harus selalu sempurna,
-              tetapi karena perjalananmu sampai di titik ini
-              sudah memiliki begitu banyak arti.
-            </p>
+
+        <article class="timeline-item timeline-right reveal">
+
+          <div class="timeline-marker">
+            <span>04</span>
           </div>
+
+          <div class="timeline-card">
+
+            <span class="timeline-date">
+              RINDU
+            </span>
+
+            <h3>
+              Rindu yang tidak selalu bisa diucapkan
+            </h3>
+
+            <p>
+              Tidak semua rindu memiliki kesempatan untuk
+              berubah menjadi pertemuan.
+            </p>
+
+            <p>
+              Kadang rindu hanya bisa menjadi pesan singkat,
+              doa sebelum tidur, atau harapan sederhana
+              agar orang yang kita sayangi baik-baik saja
+              di tempatnya berada.
+            </p>
+
+          </div>
+
         </article>
 
+
         <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-number">06</div>
-          <div class="timeline-content">
-            <span>ESOK</span>
-            <h3>Masih ada banyak halaman</h3>
-            <p>
-              Masih ada hari-hari yang belum kita tahu.
-              Masih ada tempat yang belum dikunjungi,
-              percakapan yang belum terjadi, dan cerita
-              yang belum ditulis. Semoga apa pun yang menunggu
-              di depan, kamu selalu memiliki alasan untuk tersenyum.
-            </p>
+
+          <div class="timeline-marker">
+            <span>05</span>
           </div>
+
+          <div class="timeline-card">
+
+            <span class="timeline-date">
+              HARI INI
+            </span>
+
+            <h3>
+              Hari yang ingin dirayakan
+            </h3>
+
+            <p>
+              Hari ini adalah tentang kamu.
+            </p>
+
+            <p>
+              Tentang perjalananmu.
+              Tentang semua hal yang telah kamu lewati.
+              Tentang semua hal yang masih ingin kamu capai.
+              Tentang hari-hari yang mungkin tidak mudah,
+              tetapi berhasil kamu lewati sampai sejauh ini.
+            </p>
+
+            <p>
+              Dan hari ini, dari tempat yang jauh,
+              ada seseorang yang ingin mengatakan:
+              selamat ulang tahun.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <article class="timeline-item timeline-right reveal">
+
+          <div class="timeline-marker">
+            <span>06</span>
+          </div>
+
+          <div class="timeline-card">
+
+            <span class="timeline-date">
+              NANTI
+            </span>
+
+            <h3>
+              Untuk semua hari yang belum kita temui
+            </h3>
+
+            <p>
+              Kita tidak tahu apa yang akan terjadi nanti.
+              Tidak semua rencana dapat dipastikan.
+              Tidak semua jalan dapat ditebak.
+            </p>
+
+            <p>
+              Tetapi semoga apa pun yang menunggu di depan,
+              kamu tetap menemukan alasan untuk tersenyum.
+            </p>
+
+            <p>
+              Semoga langkahmu selalu menemukan tempat
+              yang baik untuk berhenti.
+            </p>
+
+          </div>
+
         </article>
 
       </div>
@@ -441,282 +562,385 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =======================================================
          MEMORIES
-    ========================== -->
-    <section class="memories section" id="memories">
+    ======================================================== -->
 
-      <div class="section-top">
-        <span class="section-number">04</span>
-        <span class="section-label">KENANGAN</span>
+    <section class="memories section" id="kenangan">
+
+      <div class="section-heading reveal">
+
+        <span class="section-number">03</span>
+
+        <div>
+          <span class="section-kicker">KENANGAN</span>
+
+          <h2>
+            Empat potongan kecil
+            yang ingin disimpan.
+          </h2>
+        </div>
+
       </div>
 
-      <div class="memories-heading">
-        <p class="eyebrow reveal">EMPAT POTONGAN CERITA</p>
-        <h2 class="reveal">
-          Beberapa hal<br>
-          <em>cukup disimpan.</em>
-        </h2>
-      </div>
+      <div class="photo-editorial">
 
-      <div class="memory-layout">
-
-        <button class="memory-card memory-one reveal"
-                data-photo="0"
-                aria-label="Buka foto pertama">
-          <div class="memory-image ratio-916">
-            <img src="assets/photo-1.jpg" alt="Kenangan pertama">
-          </div>
-          <div class="memory-info">
+        <figure class="photo-card photo-portrait reveal">
+          <img src="assets/photo-1.jpg" alt="Kenangan satu">
+          <figcaption>
             <span>01</span>
-            <p>sebuah potongan kecil<br>dari perjalanan</p>
-          </div>
-        </button>
+            <strong>Satu kenangan</strong>
+          </figcaption>
+        </figure>
 
-        <button class="memory-card memory-two reveal"
-                data-photo="1"
-                aria-label="Buka foto kedua">
-          <div class="memory-image ratio-916">
-            <img src="assets/photo-2.jpg" alt="Kenangan kedua">
-          </div>
-          <div class="memory-info">
+        <figure class="photo-card photo-portrait reveal">
+          <img src="assets/photo-2.jpg" alt="Kenangan dua">
+          <figcaption>
             <span>02</span>
-            <p>hal sederhana<br>yang tetap berarti</p>
-          </div>
-        </button>
+            <strong>Satu cerita</strong>
+          </figcaption>
+        </figure>
 
-        <button class="memory-card memory-three reveal"
-                data-photo="2"
-                aria-label="Buka foto ketiga">
-          <div class="memory-image ratio-916">
-            <img src="assets/photo-3.jpg" alt="Kenangan ketiga">
-          </div>
-          <div class="memory-info">
+        <figure class="photo-card photo-portrait reveal">
+          <img src="assets/photo-3.jpg" alt="Kenangan tiga">
+          <figcaption>
             <span>03</span>
-            <p>jarak tidak menghapus<br>arti sebuah kenangan</p>
-          </div>
-        </button>
+            <strong>Satu rasa</strong>
+          </figcaption>
+        </figure>
 
-        <button class="memory-card memory-four reveal"
-                data-photo="3"
-                aria-label="Buka foto keempat">
-          <div class="memory-image ratio-34">
-            <img src="assets/photo-4.jpg" alt="Kenangan keempat">
-          </div>
-          <div class="memory-info">
+        <figure class="photo-card photo-landscape reveal">
+          <img src="assets/photo-4.jpg" alt="Kenangan empat">
+          <figcaption>
             <span>04</span>
-            <p>dan masih banyak<br>yang ingin dirayakan</p>
-          </div>
-        </button>
+            <strong>Untuk diingat</strong>
+          </figcaption>
+        </figure>
 
       </div>
 
-      <p class="memories-bottom reveal">
-        Karena terkadang sebuah foto bukan hanya menyimpan
-        gambar. Ia menyimpan suasana, waktu, perasaan,
-        dan alasan mengapa sebuah momen masih ingin kita ingat.
+      <div class="memory-caption reveal">
+
+        <span class="memory-caption-line"></span>
+
+        <p>
+          Foto mungkin hanya mampu menyimpan satu detik,
+          tetapi perasaan di baliknya dapat tinggal jauh lebih lama.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         LETTER
+    ======================================================== -->
+
+    <section class="letter-section section" id="surat">
+
+      <div class="letter-intro reveal">
+
+        <span class="section-number">04</span>
+
+        <span class="section-kicker">SEBUAH SURAT</span>
+
+        <h2>
+          Ada beberapa hal
+          yang ingin kusampaikan.
+        </h2>
+
+        <p>
+          Tidak semuanya mudah diucapkan ketika kita sedang
+          menjalani kehidupan masing-masing. Jadi kali ini,
+          biarkan tulisan yang berbicara.
+        </p>
+
+      </div>
+
+
+      <div class="letter-wrapper reveal">
+
+        <div class="letter-top">
+          <span>UNTUKMU</span>
+          <span>18 AGUSTUS 1993</span>
+        </div>
+
+        <article class="letter">
+
+          <p class="letter-greeting">
+            Untukmu,
+          </p>
+
+          <p>
+            Selamat ulang tahun.
+          </p>
+
+          <p>
+            Hari ini adalah hari yang sederhana, tetapi tetap
+            terasa istimewa karena hari ini adalah hari ketika
+            seseorang yang berarti dilahirkan ke dunia.
+          </p>
+
+          <p>
+            Aku mungkin tidak berada di dekatmu sekarang.
+            Aku mungkin tidak bisa datang membawa sesuatu,
+            tidak bisa berdiri tepat di sampingmu,
+            dan tidak bisa memberikan pelukan secara langsung
+            ketika hari ini dimulai.
+          </p>
+
+          <p>
+            Tetapi ada satu hal yang tetap bisa kulakukan:
+            mengingatmu, mendoakanmu, dan berharap semoga
+            hari ini memperlakukanmu dengan baik.
+          </p>
+
+          <p>
+            Aku ingin kamu tahu bahwa keberadaanmu memiliki
+            arti. Mungkin tidak selalu bisa terlihat dari
+            kata-kata atau tindakan besar, tetapi ada seseorang
+            di tempat yang jauh yang tetap memikirkanmu.
+          </p>
+
+          <p>
+            Dalam hubungan yang dipisahkan oleh jarak,
+            terkadang hal-hal kecil justru menjadi sangat berarti.
+            Sebuah kabar.
+            Sebuah pesan.
+            Sebuah suara.
+            Sebuah kalimat sederhana yang mengatakan,
+            "aku baik-baik saja."
+          </p>
+
+          <p>
+            Jarak memang tidak mudah.
+            Ada banyak waktu ketika rasa rindu datang
+            tanpa bisa segera diselesaikan.
+            Ada hari ketika ingin bertemu tetapi keadaan
+            belum mengizinkan.
+            Ada malam ketika yang bisa dilakukan hanyalah
+            menunggu hari berikutnya.
+          </p>
+
+          <p>
+            Namun mungkin dari sanalah kita belajar.
+            Bahwa mencintai seseorang tidak selalu berarti
+            harus selalu berada di sisinya.
+            Terkadang mencintai berarti tetap peduli,
+            bahkan ketika tangan kita tidak bisa menjangkaunya.
+          </p>
+
+          <p>
+            Di ulang tahunmu ini, aku tidak ingin hanya
+            mendoakan hal-hal besar.
+            Aku ingin mendoakan hal-hal sederhana yang
+            sering kali justru paling penting.
+          </p>
+
+          <p>
+            Semoga kamu selalu diberi kesehatan.
+            Semoga langkahmu dimudahkan.
+            Semoga pekerjaan dan pilihanmu membawa kebaikan.
+            Semoga ketika hidup terasa berat, kamu selalu
+            menemukan alasan untuk bertahan dan melanjutkan.
+          </p>
+
+          <p>
+            Semoga kamu bertemu dengan lebih banyak hal
+            yang membuatmu bahagia.
+            Semoga kamu tidak kehilangan dirimu sendiri
+            ketika mengejar banyak hal dalam hidup.
+          </p>
+
+          <p>
+            Dan jika suatu hari semuanya terasa terlalu berat,
+            semoga kamu ingat bahwa tidak apa-apa untuk berhenti
+            sebentar, menarik napas, kemudian melanjutkan
+            semuanya perlahan.
+          </p>
+
+          <p>
+            Aku tidak tahu bagaimana perjalanan kita nanti.
+            Aku tidak tahu ke mana hidup akan membawa kita.
+            Tetapi untuk hari ini, aku hanya ingin kamu tahu
+            bahwa aku bersyukur pernah mengenalmu,
+            bersyukur atas setiap percakapan,
+            setiap perhatian,
+            setiap tawa,
+            dan setiap momen yang pernah menjadi bagian
+            dari perjalanan ini.
+          </p>
+
+          <p>
+            Semoga tahun baru dalam hidupmu ini membawa
+            lebih banyak ketenangan daripada kekhawatiran,
+            lebih banyak senyum daripada kesedihan,
+            dan lebih banyak keberanian untuk memilih
+            apa yang benar-benar baik untuk dirimu.
+          </p>
+
+          <p>
+            Kalau suatu saat jarak terasa terlalu jauh,
+            ingatlah bahwa jarak hanyalah ruang.
+            Ia bukan ukuran seberapa berarti seseorang.
+          </p>
+
+          <p>
+            Jadi hari ini,
+            dari tempatku berada,
+            aku ingin mengirimkan satu ucapan sederhana:
+            selamat ulang tahun.
+          </p>
+
+          <p>
+            Semoga hidup selalu menemukan cara untuk
+            memperlakukanmu dengan lembut.
+          </p>
+
+          <p class="personal-message">
+            hiduplah dengan baik, aku selalu mendoakanmu di sini dan tentu saja. aku selalu mendukung apa pun pilihanmu, selama itu baik untukmu. kuharap doaku memelukmu saat lenganku tak mampu lagi.
+          </p>
+
+          <p>
+            Semoga kamu selalu menemukan rumah di dalam
+            dirimu sendiri.
+          </p>
+
+          <p>
+            Dan semoga, sejauh apa pun jarak yang terbentang,
+            kamu selalu tahu bahwa ada doa yang berjalan
+            bersamamu.
+          </p>
+
+          <p class="letter-ending">
+            Selamat ulang tahun.
+          </p>
+
+          <p class="signature">
+            Dari seseorang yang selalu mendoakanmu
+            dari kejauhan.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         TIME INDONESIA
+    ======================================================== -->
+
+    <section class="time-section section" id="waktu">
+
+      <div class="section-heading reveal">
+
+        <span class="section-number">05</span>
+
+        <div>
+          <span class="section-kicker">JARAK DAN WAKTU</span>
+
+          <h2>
+            Di mana pun kita berada,
+            waktu tetap berjalan.
+          </h2>
+        </div>
+
+      </div>
+
+      <p class="time-description reveal">
+        Indonesia memiliki tiga zona waktu.
+        Jam di bawah diperbarui secara langsung berdasarkan
+        waktu Indonesia sebenarnya.
       </p>
 
-    </section>
 
+      <div class="clock-grid">
 
-    <!-- =========================
-         LETTER
-    ========================== -->
-    <section class="letter-section section" id="letter">
+        <article class="clock-card reveal">
 
-      <div class="letter-background-word">SURAT</div>
-
-      <div class="section-top">
-        <span class="section-number">05</span>
-        <span class="section-label">SURAT UNTUKMU</span>
-      </div>
-
-      <div class="letter-intro">
-        <p class="eyebrow reveal">TIDAK ADA JARAK UNTUK SEBUAH DOA</p>
-
-        <h2 class="reveal">
-          Ada hal-hal yang<br>
-          lebih mudah ditulis<br>
-          <em>daripada diucapkan.</em>
-        </h2>
-
-        <button class="primary-btn reveal" id="openLetter">
-          Buka surat
-        </button>
-      </div>
-
-      <div class="envelope-wrap" id="envelopeWrap">
-
-        <div class="envelope">
-
-          <div class="envelope-back"></div>
-
-          <div class="envelope-paper">
-            <div class="letter-paper">
-
-              <div class="letter-header">
-                <span>18 AGUSTUS 1993</span>
-                <span>UNTUKMU</span>
-              </div>
-
-              <div class="letter-body">
-
-                <p class="letter-greeting">Untuk seseorang yang hari ini sedang bertambah usia,</p>
-
-                <p>
-                  Selamat ulang tahun.
-                </p>
-
-                <p>
-                  Mungkin kalimat itu terdengar sederhana karena
-                  terlalu sering kita dengar. Tetapi hari ini,
-                  aku ingin kalimat itu memiliki arti yang sedikit
-                  lebih panjang.
-                </p>
-
-                <p>
-                  Aku ingin kamu tahu bahwa keberadaanmu adalah
-                  sesuatu yang layak dirayakan. Bukan hanya hari ini,
-                  tetapi juga pada hari-hari ketika kamu merasa
-                  semuanya terlalu biasa, terlalu berat, atau
-                  terlalu sepi.
-                </p>
-
-                <p>
-                  Bertambahnya usia bukan hanya tentang angka.
-                  Ia adalah tentang semua hal yang sudah kamu lewati,
-                  semua keputusan yang pernah kamu ambil, semua
-                  kesalahan yang pernah mengajarkan sesuatu, dan
-                  semua keberanian yang mungkin bahkan tidak kamu
-                  sadari pernah kamu miliki.
-                </p>
-
-                <p>
-                  Aku tahu perjalanan hidup tidak selalu berjalan
-                  sesuai dengan apa yang kita inginkan. Ada hari
-                  ketika semuanya terasa mudah, tetapi ada juga
-                  hari ketika bangun dari tempat tidur saja
-                  membutuhkan lebih banyak tenaga daripada biasanya.
-                </p>
-
-                <p>
-                  Jika suatu hari kamu merasa lelah, semoga kamu
-                  tidak terlalu keras kepada dirimu sendiri.
-                  Kamu tidak harus selalu kuat. Kamu tidak harus
-                  selalu memiliki semua jawaban. Kamu hanya perlu
-                  terus melangkah, meskipun perlahan.
-                </p>
-
-                <p>
-                  Dan tentang jarak yang ada di antara kita,
-                  mungkin aku tidak selalu bisa berada di sampingmu
-                  ketika kamu membutuhkan seseorang. Aku tidak bisa
-                  tiba-tiba datang hanya karena hari itu terasa berat.
-                  Aku tidak bisa menggantikan sebuah pelukan
-                  dengan pesan singkat.
-                </p>
-
-                <p>
-                  Tetapi aku ingin kamu tahu bahwa jauh bukan berarti
-                  tidak peduli.
-                </p>
-
-                <p>
-                  Ada banyak hal yang tetap bisa dilakukan dari
-                  kejauhan. Mendengarkan. Memahami. Menunggu.
-                  Mengingat. Menyemangati. Dan yang paling sederhana,
-                  mendoakan seseorang agar selalu baik-baik saja.
-                </p>
-
-                <p>
-                  Aku berharap di usia yang baru ini, hidup memberimu
-                  lebih banyak alasan untuk tersenyum. Semoga langkahmu
-                  selalu menemukan tempat yang baik. Semoga pekerjaanmu,
-                  impianmu, pilihanmu, dan semua hal yang sedang kamu
-                  perjuangkan perlahan menemukan jalannya.
-                </p>
-
-                <p>
-                  Kalau ada sesuatu yang sedang kamu kejar,
-                  semoga kamu memiliki kekuatan untuk mengejarnya.
-                  Kalau ada sesuatu yang harus kamu lepaskan,
-                  semoga kamu memiliki keberanian untuk melepaskannya.
-                  Dan kalau ada sesuatu yang sedang kamu tunggu,
-                  semoga penantian itu membawa sesuatu yang pantas
-                  untuk ditunggu.
-                </p>
-
-                <p>
-                  Jangan lupa bahwa hidupmu memiliki arti bahkan
-                  ketika kamu sedang tidak merasa istimewa.
-                  Nilaimu tidak ditentukan oleh seberapa produktif
-                  hari ini, seberapa banyak yang berhasil kamu capai,
-                  atau seberapa jauh kamu sudah berjalan dibandingkan
-                  orang lain.
-                </p>
-
-                <p>
-                  Jalani hidupmu dengan cara yang membuatmu bisa
-                  menghargai dirimu sendiri.
-                </p>
-
-                <p>
-                  Dan ketika jarak kembali terasa panjang,
-                  semoga kamu ingat bahwa ada seseorang di tempat
-                  yang berbeda yang tetap berharap kamu baik-baik saja.
-                </p>
-
-                <p class="special-message">
-                  hiduplah dengan baik, aku selalu mendoakanmu di sini dan tentu saja. aku selalu mendukung apa pun pilihanmu, selama itu baik untukmu. kuharap doaku memelukmu saat lenganku tak mampu lagi.
-                </p>
-
-                <p>
-                  Aku tidak tahu seperti apa bentuk hari-hari
-                  yang akan datang. Kita tidak pernah benar-benar
-                  tahu apa yang akan terjadi besok. Tetapi mungkin
-                  memang itu yang membuat hidup menjadi menarik.
-                  Masih ada halaman yang kosong. Masih ada cerita
-                  yang belum selesai.
-                </p>
-
-                <p>
-                  Semoga halaman-halaman berikutnya dipenuhi
-                  dengan lebih banyak ketenangan, kesehatan,
-                  kebahagiaan, keberanian, dan hal-hal baik
-                  yang bahkan belum pernah kamu bayangkan.
-                </p>
-
-                <p>
-                  Selamat bertambah usia.
-                </p>
-
-                <p>
-                  Terima kasih karena sudah bertahan sejauh ini.
-                  Terima kasih karena terus berjalan.
-                  Dan semoga tahun yang baru ini memperlakukanmu
-                  dengan lebih lembut.
-                </p>
-
-                <p class="letter-ending">
-                  Dengan segala doa baik yang mungkin tidak selalu
-                  bisa tersampaikan lewat kata-kata.
-                </p>
-
-                <p class="signature">
-                  Untukmu,<br>
-                  selalu dengan doa yang baik.
-                </p>
-
-              </div>
-
-            </div>
+          <div class="clock-header">
+            <span>WIB</span>
+            <small>UTC +07:00</small>
           </div>
 
-          <div class="envelope-front"></div>
+          <div class="clock-time" id="wibTime">
+            00:00:00
+          </div>
 
-          <div class="envelope-seal">18</div>
+          <div class="clock-location">
+            Waktu Indonesia Barat
+          </div>
 
+          <div class="clock-cities">
+            Jakarta · Bandung · Medan · Surabaya
+          </div>
+
+        </article>
+
+
+        <article class="clock-card featured reveal">
+
+          <div class="clock-header">
+            <span>WITA</span>
+            <small>UTC +08:00</small>
+          </div>
+
+          <div class="clock-time" id="witaTime">
+            00:00:00
+          </div>
+
+          <div class="clock-location">
+            Waktu Indonesia Tengah
+          </div>
+
+          <div class="clock-cities">
+            Bali · Makassar · Mataram · Samarinda
+          </div>
+
+        </article>
+
+
+        <article class="clock-card reveal">
+
+          <div class="clock-header">
+            <span>WIT</span>
+            <small>UTC +09:00</small>
+          </div>
+
+          <div class="clock-time" id="witTime">
+            00:00:00
+          </div>
+
+          <div class="clock-location">
+            Waktu Indonesia Timur
+          </div>
+
+          <div class="clock-cities">
+            Jayapura · Ambon · Ternate · Sorong
+          </div>
+
+        </article>
+
+      </div>
+
+
+      <div class="date-live reveal">
+
+        <div>
+          <span>HARI INI</span>
+          <strong id="indonesiaDate">
+            Memuat waktu...
+          </strong>
+        </div>
+
+        <div>
+          <span>WAKTU TERAKHIR DIPERBARUI</span>
+          <strong id="lastUpdate">
+            —:—:—
+          </strong>
         </div>
 
       </div>
@@ -724,287 +948,131 @@
     </section>
 
 
-    <!-- =========================
-         BIRTHDAY / COUNTDOWN
-    ========================== -->
-    <section class="birthday-section section" id="birthday">
+    <!-- =======================================================
+         LOVE 3D
+    ======================================================== -->
 
-      <div class="birthday-glow"></div>
-
-      <div class="birthday-content">
-
-        <p class="eyebrow reveal">HARI INI ADALAH MILIKMU</p>
-
-        <h2 class="reveal">
-          Selamat ulang tahun,<br>
-          <em>untukmu.</em>
-        </h2>
-
-        <p class="birthday-copy reveal">
-          Semoga 18 Agustus selalu menjadi pengingat bahwa
-          pernah ada satu hari ketika dunia mendapatkan seseorang
-          yang kemudian menjadi begitu berarti bagi orang-orang
-          di sekitarnya.
-        </p>
-
-        <div class="age-display reveal">
-          <span class="age-number">33</span>
-          <div>
-            <small>TAHUN</small>
-            <p>perjalanan, pelajaran,<br>dan cerita yang terus bertambah.</p>
-          </div>
-        </div>
-
-        <div class="countdown-box reveal">
-
-          <div class="countdown-title">
-            Menuju 18 Agustus berikutnya
-          </div>
-
-          <div class="countdown">
-
-            <div>
-              <strong id="countDays">000</strong>
-              <span>Hari</span>
-            </div>
-
-            <i>:</i>
-
-            <div>
-              <strong id="countHours">00</strong>
-              <span>Jam</span>
-            </div>
-
-            <i>:</i>
-
-            <div>
-              <strong id="countMinutes">00</strong>
-              <span>Menit</span>
-            </div>
-
-            <i>:</i>
-
-            <div>
-              <strong id="countSeconds">00</strong>
-              <span>Detik</span>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         CAKE
-    ========================== -->
-    <section class="cake-section section">
-
-      <div class="section-top">
-        <span class="section-number">06</span>
-        <span class="section-label">PERAYAAN</span>
-      </div>
-
-      <div class="cake-layout">
-
-        <div class="cake-copy">
-
-          <p class="eyebrow reveal">SATU PERMINTAAN</p>
-
-          <h2 class="reveal">
-            Pejamkan mata.<br>
-            Buat satu <em>harapan.</em>
-          </h2>
-
-          <p class="reveal">
-            Tidak perlu memberitahukannya kepada siapa pun.
-            Beberapa harapan memang lebih indah ketika hanya
-            diketahui oleh hati sendiri.
-          </p>
-
-          <p class="reveal">
-            Tarik napas perlahan.
-            Bayangkan sesuatu yang benar-benar ingin kamu lihat
-            menjadi nyata.
-          </p>
-
-          <button class="primary-btn reveal" id="blowButton">
-            Padamkan lilin
-          </button>
-
-        </div>
-
-        <div class="cake-stage reveal">
-
-          <div class="cake-glow"></div>
-
-          <div class="cake">
-
-            <div class="candle">
-
-              <div class="flame" id="flame">
-                <span></span>
-              </div>
-
-              <div class="candle-stick"></div>
-
-            </div>
-
-            <div class="cake-top">
-              <div class="cream cream-one"></div>
-              <div class="cream cream-two"></div>
-              <div class="cream cream-three"></div>
-            </div>
-
-            <div class="cake-body">
-              <div class="cake-line"></div>
-              <div class="cake-line"></div>
-              <div class="cake-line"></div>
-            </div>
-
-            <div class="cake-base"></div>
-
-          </div>
-
-          <div class="cake-smoke" id="cakeSmoke">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         WISH
-    ========================== -->
-    <section class="wish-section section" id="wish">
-
-      <div class="wish-inner">
-
-        <div class="wish-stars"></div>
-
-        <p class="eyebrow reveal">SEBUAH RAHASIA KECIL</p>
-
-        <h2 class="reveal">
-          Kalau boleh meminta<br>
-          satu hal dari malam ini...
-        </h2>
-
-        <p class="reveal">
-          Tuliskan satu keinginanmu.
-          Tidak akan dikirim ke mana-mana.
-          Ia hanya akan tinggal di perangkat ini,
-          menjadi rahasia kecil antara kamu dan halaman ini.
-        </p>
-
-        <div class="wish-form reveal" id="wishForm">
-
-          <input
-            type="text"
-            id="wishInput"
-            maxlength="180"
-            placeholder="Tulis harapanmu di sini..."
-            autocomplete="off"
-          >
-
-          <button class="primary-btn" id="wishButton">
-            Simpan harapan
-          </button>
-
-        </div>
-
-        <div class="wish-result" id="wishResult">
-          <span>Harapanmu:</span>
-          <p id="wishText"></p>
-          <small>Disimpan hanya di perangkat ini.</small>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         3D LOVE
-    ========================== -->
     <section class="love-section section" id="love">
 
-      <div class="love-bg-text">LOVE</div>
+      <div class="love-heading reveal">
 
-      <div class="section-top">
-        <span class="section-number">07</span>
-        <span class="section-label">LOVE</span>
-      </div>
+        <span class="section-kicker">TENTANG PERASAAN</span>
 
-      <div class="love-intro">
-
-        <p class="eyebrow reveal">DIBUAT DARI KODE</p>
-
-        <h2 class="reveal">
-          Satu bentuk sederhana<br>
-          untuk sesuatu yang <em>tidak sederhana.</em>
+        <h2>
+          Ada sesuatu yang
+          tidak bisa diukur oleh jarak.
         </h2>
 
-        <p class="reveal">
-          Tidak ada gambar di sini.
-          Bentuk ini dibuat langsung menggunakan kode,
-          diputar dalam ruang tiga dimensi, dan dapat disentuh
-          untuk melihatnya dari sisi yang berbeda.
+        <p>
+          Sesuatu yang tetap terasa meskipun tidak selalu
+          bisa disentuh.
         </p>
 
       </div>
 
-      <div class="love-3d-scene reveal" id="loveScene">
 
-        <div class="love-orbit orbit-one"></div>
-        <div class="love-orbit orbit-two"></div>
+      <div class="love-stage reveal">
 
-        <div class="heart-3d-large" id="heart3D">
+        <div class="love-glow"></div>
 
-          <div class="heart-layer layer-10"></div>
-          <div class="heart-layer layer-9"></div>
-          <div class="heart-layer layer-8"></div>
-          <div class="heart-layer layer-7"></div>
-          <div class="heart-layer layer-6"></div>
-          <div class="heart-layer layer-5"></div>
-          <div class="heart-layer layer-4"></div>
-          <div class="heart-layer layer-3"></div>
-          <div class="heart-layer layer-2"></div>
-          <div class="heart-layer layer-1"></div>
+        <div
+          class="heart-3d"
+          id="heart3D"
+          tabindex="0"
+          role="img"
+          aria-label="Hati tiga dimensi"
+        >
+
+          <div class="heart-depth depth-1"></div>
+          <div class="heart-depth depth-2"></div>
+          <div class="heart-depth depth-3"></div>
+          <div class="heart-depth depth-4"></div>
+          <div class="heart-depth depth-5"></div>
+
           <div class="heart-face"></div>
 
+          <div class="heart-reflection"></div>
+
         </div>
 
-        <div class="love-3d-label">
-          <span>PUTAR DENGAN JARI</span>
-        </div>
+        <div class="heart-shadow"></div>
 
       </div>
 
-      <div class="love-message reveal">
+
+      <div class="love-copy reveal">
+
+        <span class="love-small">
+          MESKI JAUH
+        </span>
+
+        <h3>
+          Tetap ada.
+        </h3>
 
         <p>
-          Karena cinta tidak selalu harus terlihat besar.
-          Kadang ia hanya perlu hadir, diam-diam,
-          dan tetap ada.
+          Karena beberapa perasaan tidak membutuhkan
+          kedekatan setiap hari untuk tetap tumbuh.
         </p>
 
         <p>
-          Seperti seseorang yang jauh tetapi tetap didoakan.
-          Seperti pesan yang sederhana tetapi mampu
-          memperbaiki sebuah hari.
+          Mereka hidup dari perhatian,
+          dari doa,
+          dari kepercayaan,
+          dan dari keputusan untuk tetap peduli.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         BIRTHDAY MESSAGE
+    ======================================================== -->
+
+    <section class="birthday-section section">
+
+      <div class="birthday-card reveal">
+
+        <div class="birthday-decoration"></div>
+
+        <span class="section-kicker">
+          HARI INI ADALAH TENTANGMU
+        </span>
+
+        <h2>
+          Semoga langkahmu
+          selalu menuju hal-hal baik.
+        </h2>
+
+        <div class="birthday-divider"></div>
+
+        <p>
+          Semoga apa pun yang sedang kamu perjuangkan
+          menemukan jalannya.
+        </p>
+
+        <p>
+          Semoga semua hal yang membuatmu lelah
+          perlahan menemukan jawabannya.
+        </p>
+
+        <p>
+          Semoga kamu memiliki keberanian untuk meninggalkan
+          hal-hal yang tidak baik untukmu dan memiliki
+          keteguhan untuk mempertahankan hal-hal yang berarti.
+        </p>
+
+        <p>
+          Dan semoga setiap tahun yang datang membawa
+          versi dirimu yang semakin tenang,
+          semakin kuat,
+          dan semakin bahagia.
         </p>
 
         <strong>
-          Yang jauh tidak selalu berarti asing.
+          Selamat ulang tahun.
         </strong>
 
       </div>
@@ -1012,144 +1080,50 @@
     </section>
 
 
-    <!-- =========================
-         SURPRISE
-    ========================== -->
-    <section class="surprise-section section" id="surprise">
-
-      <div class="surprise-background"></div>
-
-      <div class="surprise-content">
-
-        <p class="eyebrow reveal">SATU HAL TERAKHIR</p>
-
-        <h2 class="reveal">
-          Masih ada satu<br>
-          <em>kejutan.</em>
-        </h2>
-
-        <p class="reveal">
-          Klik kotaknya.
-        </p>
-
-        <button class="gift-box reveal" id="giftBox" aria-label="Buka hadiah">
-
-          <div class="gift-glow"></div>
-
-          <div class="gift-lid">
-            <span class="ribbon"></span>
-          </div>
-
-          <div class="gift-body">
-            <span class="ribbon vertical"></span>
-            <span class="ribbon horizontal"></span>
-          </div>
-
-        </button>
-
-        <div class="surprise-message" id="surpriseMessage">
-
-          <span class="surprise-small">UNTUKMU</span>
-
-          <h3>
-            Hadiah terbaik hari ini
-            bukanlah sesuatu yang bisa
-            dibungkus.
-          </h3>
-
-          <p>
-            Hadiah terbaik hari ini adalah kesempatan untuk
-            kembali mengingat bahwa hidupmu berarti.
-            Bahwa keberadaanmu memiliki tempat.
-            Bahwa ada orang-orang yang ingin melihatmu baik-baik saja.
-          </p>
-
-          <p>
-            Dan semoga, di antara begitu banyak hal yang kamu
-            inginkan dalam hidup, kamu juga mendapatkan satu hal
-            yang sering dilupakan:
-            ketenangan.
-          </p>
-
-          <p>
-            Semoga kamu selalu memiliki tempat untuk pulang,
-            seseorang untuk dipercaya, alasan untuk bertahan,
-            dan banyak sekali alasan untuk tersenyum.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         SECRET
-    ========================== -->
-    <section class="secret-section section">
-
-      <button class="secret-paw" id="secretPaw" aria-label="Temukan pesan rahasia">
-
-        <span class="paw-pad"></span>
-        <i class="toe toe-1"></i>
-        <i class="toe toe-2"></i>
-        <i class="toe toe-3"></i>
-        <i class="toe toe-4"></i>
-
-      </button>
-
-      <p class="secret-hint reveal">
-        Masih ada satu titik kecil yang belum kamu temukan.
-      </p>
-
-    </section>
-
-
-    <!-- =========================
+    <!-- =======================================================
          FINAL
-    ========================== -->
-    <section class="final-section section" id="final">
+    ======================================================== -->
 
-      <div class="final-bg-number">18</div>
+    <section class="final-section section">
 
-      <div class="final-content">
+      <div class="final-content reveal">
 
-        <p class="eyebrow reveal">
-          SEBELUM PERJALANAN INI SELESAI
-        </p>
+        <span class="section-kicker">
+          SEBELUM KITA SELESAI
+        </span>
 
-        <h2 class="reveal">
-          Terima kasih<br>
-          <em>sudah menjadi dirimu.</em>
+        <h2>
+          Kalau suatu hari kamu
+          membaca ini lagi...
         </h2>
 
-        <div class="final-divider reveal"></div>
-
-        <p class="final-text reveal">
-          Semoga setiap langkah setelah hari ini membawa
-          kamu semakin dekat kepada kehidupan yang kamu inginkan.
+        <p>
+          Semoga kamu masih tersenyum.
         </p>
 
-        <p class="final-text reveal">
-          Semoga jarak suatu hari nanti hanya menjadi cerita
-          tentang bagaimana kita pernah belajar menunggu.
+        <p>
+          Semoga kamu sudah berada jauh lebih dekat
+          dengan semua hal yang pernah kamu impikan.
         </p>
 
-        <p class="final-text reveal">
-          Dan semoga ketika melihat kembali halaman ini,
-          kamu bisa tersenyum dan berkata:
-          ternyata aku sudah melewati begitu banyak hal.
+        <p>
+          Dan semoga kamu tidak pernah lupa bahwa
+          perjalananmu layak dirayakan.
         </p>
 
-        <div class="final-birthday reveal">
-          <span>SELAMAT ULANG TAHUN</span>
-          <strong>18 AGUSTUS 1993</strong>
+        <div class="final-line"></div>
+
+        <div class="final-date">
+          18 AGUSTUS 1993
         </div>
 
-        <button class="primary-btn reveal" id="replayButton">
-          Ulangi perjalanan
-        </button>
+        <h3>
+          Selamat ulang tahun.
+        </h3>
+
+        <p class="final-note">
+          Dari jauh, tetapi dengan doa yang selalu dekat.
+        </p>
 
       </div>
 
@@ -1158,82 +1132,66 @@
   </main>
 
 
-  <!-- =========================
+  <!-- =========================================================
        LIGHTBOX
-  ========================== -->
+  ========================================================== -->
+
   <div class="lightbox" id="lightbox" aria-hidden="true">
 
-    <button class="lightbox-close" id="lightboxClose" aria-label="Tutup">
+    <button
+      class="lightbox-close"
+      id="lightboxClose"
+      aria-label="Tutup foto"
+    >
       ×
     </button>
 
-    <button class="lightbox-prev" id="lightboxPrev" aria-label="Foto sebelumnya">
-      ‹
-    </button>
+    <img id="lightboxImage" src="" alt="Foto diperbesar">
 
-    <div class="lightbox-content">
-      <img id="lightboxImage" src="" alt="Foto kenangan">
-      <div class="lightbox-counter">
-        <span id="lightboxCurrent">01</span>
-        /
-        <span>04</span>
-      </div>
+    <div class="lightbox-counter" id="lightboxCounter">
+      01 / 04
     </div>
 
-    <button class="lightbox-next" id="lightboxNext" aria-label="Foto berikutnya">
-      ›
+    <button class="lightbox-prev" id="lightboxPrev">
+      ←
+    </button>
+
+    <button class="lightbox-next" id="lightboxNext">
+      →
     </button>
 
   </div>
 
 
-  <!-- =========================
-       SECRET MODAL
-  ========================== -->
-  <div class="secret-modal" id="secretModal" aria-hidden="true">
+  <!-- =========================================================
+       MUSIC PLAYER
+  ========================================================== -->
 
-    <div class="secret-modal-box">
+  <div class="music-player" id="musicPlayer">
 
-      <button class="modal-close" id="secretClose">×</button>
+    <div class="music-player-info">
 
-      <span class="modal-eyebrow">PESAN RAHASIA</span>
-
-      <div class="mini-heart"></div>
-
-      <h3>
-        Kalau suatu hari<br>
-        jarak terasa terlalu jauh...
-      </h3>
-
-      <p>
-        ingatlah bahwa ada doa yang tidak membutuhkan
-        alamat untuk sampai.
-      </p>
-
-      <p>
-        Mungkin tangan tidak selalu bisa menjangkau,
-        tetapi hati selalu memiliki caranya sendiri
-        untuk tetap mendoakan seseorang.
-      </p>
+      <span class="music-status">SEDANG DIPUTAR</span>
 
       <strong>
-        Semoga kamu selalu baik-baik saja.
+        Dunia yang Nanti
       </strong>
+
+      <small>
+        Raim Laode
+      </small>
 
     </div>
 
+    <button id="playerPlay" aria-label="Putar atau jeda">
+      <span id="playerPlayIcon">▶</span>
+    </button>
+
+    <button id="playerMute" aria-label="Mute">
+      <span id="muteText">Suara</span>
+    </button>
+
   </div>
-
-
-  <!-- =========================
-       AUDIO
-  ========================== -->
-  <audio
-    id="bgMusic"
-    src="assets/music.mp3"
-    preload="metadata"
-    loop
-  ></audio>
 
 
   <script src="script.js"></script>
